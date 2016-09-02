@@ -1,0 +1,1 @@
+knife ec2 server create -r "role[role2]" -I ami-8a9d5dea -f t2.micro \ -S nikhil-key -i ~/chef-repo/.chef/nikhil-key.pem --node-name userchef --ssh-user ubuntu --region us-west-2 -Z us-west-2b --security-group-ids sg-e31af79a
