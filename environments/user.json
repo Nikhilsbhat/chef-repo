@@ -1,0 +1,15 @@
+{
+  "name": "user",
+  "chef_environment": "_default",
+  "normal": {
+    "tags": [
+
+    ]
+  },
+  "policy_name": null,
+  "policy_group": null,
+  "run_list": [
+  "recipe[nginx]",
+  "role[role1]"
+]
+}

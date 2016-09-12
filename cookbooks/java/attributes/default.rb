@@ -18,10 +18,10 @@
 # limitations under the License.
 
 # default jdk attributes
-default['java']['jdk_version'] = '6'
+default['java']['install_flavor']='openjdk'
+default['java']['jdk_version'] = '8'
 default['java']['arch'] = node['kernel']['machine'] =~ /x86_64/ ? 'x86_64' : 'i586'
 default['java']['openjdk_packages'] = []
-default['java']['openjdk_version'] = nil
 default['java']['accept_license_agreement'] = false
 default['java']['set_default'] = true
 default['java']['alternatives_priority'] = 1062
