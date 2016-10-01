@@ -22,6 +22,16 @@ RubyGems into the "system" Ruby, one must install `developer/gcc46`.
 [An issue](https://github.com/omniti-labs/omnios-build/issues/19) is
 open upstream w/ OmniOS to rebuild the Ruby package with GCC 4.7.2.
 
+<<<<<<< HEAD
+=======
+- Debian/Ubuntu
+- RHEL/CentOS/Scientific/Amazon/Oracle
+- openSUSE / SUSE Enterprise Linux
+- SmartOS
+- Fedora
+- Mac OS X 10.9+
+- FreeBSD
+>>>>>>> chef-vendor-build-essential
 
 Attributes
 ----------
