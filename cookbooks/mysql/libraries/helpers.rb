@@ -179,14 +179,14 @@ module MysqlCookbook
       return '5.7.13-1.fc24' if major_version == '5.7' && fc24?
 
       # debian
-      return '5.5.49-0+deb7u1' if major_version == '5.5' && wheezy?
-      return '5.5.49-0+deb8u1' if major_version == '5.5' && jessie?
+      return '5.5.50-0+deb7u1' if major_version == '5.5' && wheezy?
+      return '5.5.50-0+deb8u1' if major_version == '5.5' && jessie?
 
       # ubuntu
-      return '5.5.50-0ubuntu0.12.04.1' if major_version == '5.5' && precise?
-      return '5.5.50-0ubuntu0.14.04.1' if major_version == '5.5' && trusty?
+      return '5.5.52-0ubuntu0.12.04.1' if major_version == '5.5' && precise?
+      return '5.5.52-0ubuntu0.14.04.1' if major_version == '5.5' && trusty?
       return '5.6.31-0ubuntu0.14.04.2' if major_version == '5.6' && trusty?
-      return '5.7.13-0ubuntu0.16.04.2' if major_version == '5.7' && xenial?
+      return '5.7.15-0ubuntu0.16.04.1' if major_version == '5.7' && xenial?
 
       # suse
       return '5.6.30-2.20.2' if major_version == '5.6' && opensuse?
@@ -270,13 +270,17 @@ module MysqlCookbook
     end
 
     def init_records_script
+      # Note: shell-escaping passwords in a SQL file may cause corruption - eg
+      # mysql will read \& as &, but \% as \%. Just escape bare-minimum \ and '
+      sql_escaped_password = root_password.gsub('\\') { '\\\\' }.gsub("'") { '\\\'' }
+
       <<-EOS
         set -e
         rm -rf /tmp/#{mysql_name}
         mkdir /tmp/#{mysql_name}
 
-        cat > /tmp/#{mysql_name}/my.sql <<-EOSQL
-UPDATE mysql.user SET #{password_column_name}=PASSWORD('#{root_password}')#{password_expired} WHERE user = 'root';
+        cat > /tmp/#{mysql_name}/my.sql <<-'EOSQL'
+UPDATE mysql.user SET #{password_column_name}=PASSWORD('#{sql_escaped_password}')#{password_expired} WHERE user = 'root';
 DELETE FROM mysql.user WHERE USER LIKE '';
 DELETE FROM mysql.user WHERE user = 'root' and host NOT IN ('127.0.0.1', 'localhost');
 FLUSH PRIVILEGES;
@@ -304,7 +308,7 @@ EOSQL
         Chef::Log.info('Root password is empty')
         return ''
       end
-      Shellwords.escape(initial_root_password)
+      initial_root_password
     end
 
     def password_expired
