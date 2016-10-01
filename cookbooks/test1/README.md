@@ -1,4 +1,4 @@
-# jdk Cookbook
+# test1 Cookbook
 
 TODO: Enter the cookbook description here.
 
@@ -20,14 +20,14 @@ e.g.
 
 ### Cookbooks
 
-- `toaster` - jdk needs toaster to brown your bagel.
+- `toaster` - test1 needs toaster to brown your bagel.
 
 ## Attributes
 
 TODO: List your cookbook attributes here.
 
 e.g.
-### jdk::default
+### test1::default
 
 <table>
   <tr>
@@ -37,7 +37,7 @@ e.g.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['jdk']['bacon']</tt></td>
+    <td><tt>['test1']['bacon']</tt></td>
     <td>Boolean</td>
     <td>whether to include bacon</td>
     <td><tt>true</tt></td>
@@ -46,18 +46,18 @@ e.g.
 
 ## Usage
 
-### jdk::default
+### test1::default
 
 TODO: Write usage instructions for each cookbook.
 
 e.g.
-Just include `jdk` in your node's `run_list`:
+Just include `test1` in your node's `run_list`:
 
 ```json
 {
   "name":"my_node",
   "run_list": [
-    "recipe[jdk]"
+    "recipe[test1]"
   ]
 }
 ```

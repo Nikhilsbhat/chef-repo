@@ -1,9 +1,9 @@
-# columbus_java CHANGELOG
+# test1 CHANGELOG
 
-This file is used to list changes made in each version of the columbus_java cookbook.
+This file is used to list changes made in each version of the test1 cookbook.
 
 ## 0.1.0
-- [your_name] - Initial release of columbus_java
+- [your_name] - Initial release of test1
 
 - - -
 Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.

@@ -1,4 +1,4 @@
-# columbus_java Cookbook
+# mindtree Cookbook
 
 TODO: Enter the cookbook description here.
 
@@ -20,14 +20,14 @@ e.g.
 
 ### Cookbooks
 
-- `toaster` - columbus_java needs toaster to brown your bagel.
+- `toaster` - mindtree needs toaster to brown your bagel.
 
 ## Attributes
 
 TODO: List your cookbook attributes here.
 
 e.g.
-### columbus_java::default
+### mindtree::default
 
 <table>
   <tr>
@@ -37,7 +37,7 @@ e.g.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['columbus_java']['bacon']</tt></td>
+    <td><tt>['mindtree']['bacon']</tt></td>
     <td>Boolean</td>
     <td>whether to include bacon</td>
     <td><tt>true</tt></td>
@@ -46,18 +46,18 @@ e.g.
 
 ## Usage
 
-### columbus_java::default
+### mindtree::default
 
 TODO: Write usage instructions for each cookbook.
 
 e.g.
-Just include `columbus_java` in your node's `run_list`:
+Just include `mindtree` in your node's `run_list`:
 
 ```json
 {
   "name":"my_node",
   "run_list": [
-    "recipe[columbus_java]"
+    "recipe[mindtree]"
   ]
 }
 ```
