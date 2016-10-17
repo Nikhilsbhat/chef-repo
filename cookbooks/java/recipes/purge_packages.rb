@@ -1,5 +1,14 @@
+<<<<<<< HEAD:cookbooks/java/recipes/purge_packages.rb
 # Cookbook Name:: java
 # Recipe:: purge_packages
+=======
+#
+# Author:: Sean OMeara (<someara@chef.io>)
+# Author:: Joshua Timberman (<joshua@chef.io>)
+# Recipe:: yum::default
+#
+# Copyright 2013-2014, Chef Software, Inc (<legal@chef.io>)
+>>>>>>> chef-vendor-yum:cookbooks/yum/recipes/default.rb
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,8 +22,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+<<<<<<< HEAD:cookbooks/java/recipes/purge_packages.rb
 %w(sun-java6-jdk sun-java6-bin sun-java6-jre).each do |pkg|
   package pkg do
     action :purge
+=======
+yum_globalconfig '/etc/yum.conf' do
+  node['yum']['main'].each do |config, value|
+    send(config.to_sym, value)
+>>>>>>> chef-vendor-yum:cookbooks/yum/recipes/default.rb
   end
 end

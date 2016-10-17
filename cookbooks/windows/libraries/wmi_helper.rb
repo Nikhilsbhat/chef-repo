@@ -1,7 +1,12 @@
 #
 # Author:: Adam Edwards (<adamed@chef.io>)
 #
+<<<<<<< HEAD:cookbooks/windows/libraries/wmi_helper.rb
 # Copyright:: 2014-2016, Chef Software, Inc.
+=======
+# Author:: Sean OMeara <someara@chef.io>
+# Copyright 2013, Chef
+>>>>>>> chef-vendor-yum:cookbooks/yum/providers/globalconfig.rb
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,6 +21,7 @@
 # limitations under the License.
 #
 
+<<<<<<< HEAD:cookbooks/windows/libraries/wmi_helper.rb
 if RUBY_PLATFORM =~ /mswin|mingw32|windows/
   require 'win32ole'
 
@@ -24,6 +30,21 @@ if RUBY_PLATFORM =~ /mswin|mingw32|windows/
     result = wmi.ExecQuery(wmi_query)
     return nil unless result.each.count > 0
     result
+=======
+# Allow for Chef 10 support
+use_inline_resources if defined?(use_inline_resources)
+
+def whyrun_supported?
+  true
+end
+
+action :create  do
+  template new_resource.path do
+    source 'main.erb'
+    cookbook 'yum'
+    mode '0644'
+    variables(:config => new_resource)
+>>>>>>> chef-vendor-yum:cookbooks/yum/providers/globalconfig.rb
   end
 
   def wmi_object_property(wmi_object, wmi_property)
