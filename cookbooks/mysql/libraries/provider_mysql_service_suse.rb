@@ -18,11 +18,6 @@ class Chef
         include MysqlCookbook::Helpers::Suse
 
         action :create do
-
-          unless sensitive_supported?
-            Chef::Log.debug("Sensitive attribute disabled, chef-client version #{Chef::VERSION} is lower than 11.14.0")
-          end
-
           package 'mysql' do
             action :install
           end
@@ -78,8 +73,7 @@ class Chef
               :include_dir => '/etc/mysql/conf.d',
               :pid_file => '/var/run/mysql/mysql.pid',
               :port => new_resource.parsed_port,
-              :socket_file => '/var/lib/mysql/mysql.sock',
-              :enable_utf8 => new_resource.parsed_enable_utf8
+              :socket_file => '/var/lib/mysql/mysql.sock'
               )
             action :create
             notifies :run, 'bash[move mysql data to datadir]'
@@ -106,7 +100,6 @@ class Chef
           end
 
           template '/etc/mysql_grants.sql' do
-            sensitive true if sensitive_supported?
             cookbook 'mysql'
             source 'grants/grants.sql.erb'
             owner 'root'
@@ -118,7 +111,6 @@ class Chef
           end
 
           execute 'install-grants' do
-            sensitive true if sensitive_supported?
             cmd = '/usr/bin/mysql'
             cmd << ' -u root '
             cmd << "#{pass_string} < /etc/mysql_grants.sql"
@@ -140,7 +132,6 @@ class Chef
           end
 
           execute 'assign-root-password' do
-            sensitive true if sensitive_supported?
             cmd = '/usr/bin/mysqladmin'
             cmd << ' -u root password '
             cmd << Shellwords.escape(new_resource.parsed_server_root_password)
@@ -150,7 +141,6 @@ class Chef
           end
 
           execute 'create root marker' do
-            sensitive true if sensitive_supported?
             cmd = '/bin/echo'
             cmd << " '#{Shellwords.escape(new_resource.parsed_server_root_password)}'"
             cmd << ' > /etc/.mysql_root'

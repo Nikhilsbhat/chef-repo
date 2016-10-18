@@ -1,6 +1,5 @@
 require 'chef/provider/lwrp_base'
 require 'shellwords'
-require_relative 'helpers'
 require_relative 'helpers_fedora'
 
 class Chef
@@ -14,14 +13,8 @@ class Chef
         end
 
         include MysqlCookbook::Helpers::Fedora
-        include Opscode::Mysql::Helpers
 
         action :create do
-
-          unless sensitive_supported?
-            Chef::Log.debug("Sensitive attribute disabled, chef-client version #{Chef::VERSION} is lower than 11.14.0")
-          end
-
           package new_resource.parsed_package_name do
             action new_resource.parsed_package_action
             version new_resource.parsed_package_version
@@ -63,7 +56,6 @@ class Chef
           end
 
           template '/etc/mysql_grants.sql' do
-            sensitive true if sensitive_supported?
             cookbook 'mysql'
             source 'grants/grants.sql.erb'
             owner 'root'
@@ -75,7 +67,6 @@ class Chef
           end
 
           execute 'install-grants' do
-            sensitive true if sensitive_supported?
             cmd = "#{prefix_dir}/bin/mysql"
             cmd << ' -u root '
             cmd << "#{pass_string} < /etc/mysql_grants.sql"
@@ -101,8 +92,7 @@ class Chef
               :pid_file => pid_file,
               :port => new_resource.parsed_port,
               :prefix_dir => prefix_dir,
-              :socket_file => socket_file,
-              :enable_utf8 => new_resource.parsed_enable_utf8
+              :socket_file => socket_file
               )
             action :create
             notifies :run, 'bash[move mysql data to datadir]'
@@ -122,7 +112,6 @@ class Chef
           end
 
           execute 'assign-root-password' do
-            sensitive true if sensitive_supported?
             cmd = "#{prefix_dir}/bin/mysqladmin"
             cmd << ' -u root password '
             cmd << Shellwords.escape(new_resource.parsed_server_root_password)
@@ -132,7 +121,6 @@ class Chef
           end
 
           execute 'create root marker' do
-            sensitive true if sensitive_supported?
             cmd = '/bin/echo'
             cmd << " '#{Shellwords.escape(new_resource.parsed_server_root_password)}'"
             cmd << ' > /etc/.mysql_root'
