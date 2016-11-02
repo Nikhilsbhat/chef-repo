@@ -1,7 +1,7 @@
 # encoding: UTF-8
 
-default['mysql-multi']['master'] = nil
-default['mysql-multi']['slaves'] = %w()
+default['mysql-multi']['master'] = '35.160.165.72'
+default['mysql-multi']['slaves'] = '35.161.88.220'
 default['mysql-multi']['slave_user'] = 'replicant'
 default['mysql-multi']['server_repl_password'] = nil
 default['mysql-multi']['bind_ip'] = nil
