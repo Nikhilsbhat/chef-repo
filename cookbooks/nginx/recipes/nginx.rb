@@ -7,17 +7,17 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "apt2"
+include_recipe 'apt2'
 
 package 'nginx' do
   action :install
 end
 
 service 'nginx' do
-  action [ :enable, :start ]
+  action [:enable, :start]
 end
 
-cookbook_file "/usr/share/nginx/html/index.html" do
-  source "index.html"
-  mode "0644"
+cookbook_file '/usr/share/nginx/html/index.html' do
+  source 'index.html'
+  mode '0644'
 end
