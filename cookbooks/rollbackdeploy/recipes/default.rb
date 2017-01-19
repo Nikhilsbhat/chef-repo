@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: deploy
+# Cookbook Name:: rollbackdeploy
 # Recipe:: default
 #
 # Copyright 2016, YOUR_COMPANY_NAME

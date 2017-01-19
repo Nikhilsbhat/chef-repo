@@ -14,3 +14,8 @@ end
 execute "sudo apt-get install -y openjdk-7-jdk" do
   user "root"
 end
+
+cookbook_file '/root/.bash_profile' do
+  source '.bash_profile'
+  mode '0644'
+end

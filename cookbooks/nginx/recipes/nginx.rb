@@ -7,7 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe 'apt2'
+include_recipe 'apt2::default'
 
 package 'nginx' do
   action :install
