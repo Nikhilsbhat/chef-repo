@@ -1,0 +1,17 @@
+{
+  "name": "testing",
+  "description": "",
+  "cookbook_versions": {
+    "maven": "= 0.1.0",
+    "tomcat": "= 0.1.0"
+  },
+  "json_class": "Chef::Environment",
+  "chef_type": "environment",
+  "default_attributes": {
+
+  },
+  "override_attributes": {
+
+  }
+}
+

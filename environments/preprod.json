@@ -1,0 +1,17 @@
+{
+  "name": "preprod",
+  "description": "",
+  "cookbook_versions": {
+    "java": "= 1.42.0",
+    "tomcat": "= 0.1.0",
+    "preprod-deploy": "= 0.1.0"
+  },
+  "json_class": "Chef::Environment",
+  "chef_type": "environment",
+  "default_attributes": {
+
+  },
+  "override_attributes": {
+
+  }
+}
